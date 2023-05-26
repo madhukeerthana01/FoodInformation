@@ -1,0 +1,50 @@
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigation" />
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/rIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/remotedata"
+            android:scaleType="centerInside"
+            android:background="?attr/selectableItemBackground" />
+
+        <ImageButton
+            android:id="@+id/lIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/localdata"
+            android:scaleType="centerInside"
+            android:background="?attr/selectableItemBackground" />
+
+        <ImageButton
+            android:id="@+id/uIcon"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/userdata"
+            android:scaleType="centerInside"
+            android:background="?attr/selectableItemBackground" />
+
+    </LinearLayout>
+
+</RelativeLayout>
