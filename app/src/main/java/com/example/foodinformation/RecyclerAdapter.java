@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private ArrayList<Model.categories> arrayList;
-    BottomsheetClickListner bottomListner;
+    private OnClickListener onClickListener;
 
     public RecyclerAdapter(ArrayList<Model.categories> arrayList) {
         this.arrayList = arrayList;
@@ -35,20 +35,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Model.categories categories = arrayList.get(position);
-        holder.title.setText(categories.idCategory);
-        holder.message.setText(categories.strCategory);
-        holder.message2.setText((categories.strCategoryDescription));
+        holder.name.setText(categories.strCategory);
         Picasso.with(holder.itemView.getContext())
                 .load(arrayList.get(position).getStrCategoryThumb())
-                .into(holder.message3);
-        holder.message.setOnClickListener(new View.OnClickListener() {
+                .into(holder.picture);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (bottomListner != null) {
-                    bottomListner.onItemClicked(arrayList.get(position).getStrCategoryDescription());
+                if (onClickListener != null) {
+                    onClickListener.onClick(position, arrayList);
                 }
             }
         });
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+
+    public interface OnClickListener {
+        void onClick(int position, ArrayList<Model.categories> model);
     }
 
 
@@ -58,18 +65,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView message;
-        TextView message2;
-        ShapeableImageView message3;
-        private RecyclerView.ViewHolder holder;
+        TextView name;
+        ShapeableImageView picture;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.title);
-            message = itemView.findViewById(R.id.message);
-            message2 = itemView.findViewById(R.id.message2);
-            message3 = itemView.findViewById(R.id.message3);
+            name = itemView.findViewById(R.id.name);
+            picture = itemView.findViewById(R.id.picture);
         }
     }
 }

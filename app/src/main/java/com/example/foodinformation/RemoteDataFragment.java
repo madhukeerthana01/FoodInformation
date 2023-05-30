@@ -27,11 +27,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RemoteDataFragment extends Fragment implements BottomsheetClickListner{
+public class RemoteDataFragment extends Fragment {
     private Button getData;
     private RecyclerView recyclerView;
     TextView textView;
     private static final String TAG = "RemoteDataFragment";
+    RecyclerAdapter recyclerAdapter;
 
 
     public RemoteDataFragment() {
@@ -75,9 +76,26 @@ public class RemoteDataFragment extends Fragment implements BottomsheetClickList
                             editor.apply();
 
                             // Set the retrieved data to your RecyclerView adapter
-                            RecyclerAdapter recyclerAdapter = new RecyclerAdapter(data);
+                             recyclerAdapter = new RecyclerAdapter(data);
                             recyclerView.setAdapter(recyclerAdapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+                            recyclerAdapter.setOnClickListener(new RecyclerAdapter.OnClickListener() {
+                                @Override
+                                public void onClick(int position, ArrayList<Model.categories> model) {
+                                    BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity());
+                                    View bottomSheetView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_bottom_sheet, null);
+                                    bottomSheetDialog.setContentView(bottomSheetView);
+                                    TextView descriptionTextView = bottomSheetView.findViewById(R.id.textview2);
+
+                                    String description = model.get(position).getStrCategoryDescription();
+                                    descriptionTextView.setText(description);
+
+                                    bottomSheetDialog.show();
+                                }
+                            });
+
+
+
                         } else {
                             Log.e(TAG, "onResponse: Request failed");
                         }
@@ -90,13 +108,5 @@ public class RemoteDataFragment extends Fragment implements BottomsheetClickList
                 });
             }
         });
-    }
-    public void onItemClicked(String description) {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity());
-        View bottomSheetView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_bottom_sheet,null);
-        bottomSheetDialog.setContentView(bottomSheetView);
-        TextView descriptionTextView = bottomSheetView.findViewById(R.id.textView);
-        descriptionTextView.setText(description);
-        bottomSheetDialog.show();
     }
 }

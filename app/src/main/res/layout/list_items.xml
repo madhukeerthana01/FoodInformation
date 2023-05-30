@@ -5,43 +5,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:padding="10dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <TextView-->
+<!--        android:id="@+id/title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Title"-->
+<!--        android:padding="10dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
    <TextView
-        android:id="@+id/message"
+        android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Message"
        android:textStyle="bold"
         android:padding="10dp"
         android:textSize="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-    <TextView
-        android:id="@+id/message2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Message2"
-        android:padding="10dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/message3" />
+        android:textColor="@color/black" />
+<!--    <TextView-->
+<!--        android:id="@+id/message2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Message2"-->
+<!--        android:padding="10dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textColor="@color/black"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/message3" />-->
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/message3"
+        android:id="@+id/picture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Message3"
         android:padding="10dp"
         android:textSize="20dp"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/message" />
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

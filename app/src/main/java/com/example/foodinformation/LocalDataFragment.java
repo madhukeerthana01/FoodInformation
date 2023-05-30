@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Button;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class LocalDataFragment extends Fragment {
     private RecyclerView recyclerView;
+    RecyclerAdapter recyclerAdapter;
+    Button button;
 
     public LocalDataFragment() {
     }
@@ -30,6 +32,7 @@ public class LocalDataFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_local_data, container, false);
         recyclerView = rootView.findViewById(R.id.recyclerView);
+        button = rootView.findViewById(R.id.button);
         return rootView;
     }
 
@@ -47,8 +50,22 @@ public class LocalDataFragment extends Fragment {
         ArrayList<Model.categories> storedData = gson.fromJson(jsonData, listType);
 
         // Set the retrieved data to your RecyclerView adapter
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(storedData);
+        recyclerAdapter = new RecyclerAdapter(storedData);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+      button.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              PriceDetails priceDetails = new PriceDetails();
+
+              // Replace the current fragment with the PriceDetailsFragment
+              requireActivity().getSupportFragmentManager()
+                      .beginTransaction()
+                      .replace(R.id.fragmentContainer, priceDetails)
+                      .addToBackStack(null)
+                      .commit();
+          }
+      });
+
     }
 }

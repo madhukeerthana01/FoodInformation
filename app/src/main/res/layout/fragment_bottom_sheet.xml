@@ -12,13 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="Description"
+        android:text="Item Description"
         android:textAlignment="center"
         android:textSize="30dp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textview"
+        android:id="@+id/textview2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="description"
